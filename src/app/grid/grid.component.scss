@@ -1,0 +1,93 @@
+
+:host {
+  --cols:inherit;
+  --col-template:inherit;
+  --rows:inherit;
+  --row-template:inherit;
+  --grid-gap:inherit;
+
+@media screen and (min-width: 0px) {
+  --cols:var(--cols-xs,inherit);
+  --col-template:var(--col-template-xs,inherit);
+  --rows:var(--rows-xs,inherit);
+  --row-template:var(--row-template-xs,inherit);
+  --grid-gap:var(--grid-gap-xs,inherit);
+}
+
+@media screen and (min-width: 600px) {
+  --cols:var(--cols-sm,inherit);
+  --col-template:var(--col-template-sm,inherit);
+  --rows:var(--rows-sm,inherit);
+  --row-template:var(--row-template-sm,inherit);
+  --grid-gap:var(--grid-gap-sm,inherit);
+}
+
+@media screen and (min-width: 1024px) {
+  --cols:var(--cols-md,inherit);
+  --col-template:var(--col-template-md,inherit);
+  --rows:var(--rows-md,inherit);
+  --row-template:var(--row-template-md,inherit);
+  --grid-gap:var(--grid-gap-md,inherit);
+}
+
+@media screen and (min-width: 1440px) {
+  --cols:var(--cols-lg,inherit);
+  --col-template:var(--col-template-lg,inherit);
+  --rows:var(--rows-lg,inherit);
+  --row-template:var(--row-template-lg,inherit);
+  --grid-gap:var(--grid-gap-lg,inherit);
+}
+
+@media screen and (min-width: 1920px){
+  --cols:var(--cols-xl,inherit);
+  --col-template:var(--col-template-xl,inherit);
+  --rows:var(--rows-xl,inherit);
+  --row-template:var(--row-template-xl,inherit);
+  --grid-gap:var(--grid-gap-xl,inherit);
+}
+
+}
+
+
+:host {
+@for $i from 1 through 24 {
+  &[cols="#{$i}"] {--cols: #{$i} ;}
+  &[rows="#{$i}"] {--rows: #{$i} ;}
+  $breakpoints: xs, sm, md, lg, xl;
+    @each $breakpoint in $breakpoints {
+      &[cols*="#{$breakpoint}:#{$i}"]{--cols-#{$breakpoint}: #{$i} ;}
+      &[rows*="#{$breakpoint}:#{$i}"]{--rows-#{$breakpoint}: #{$i} ;}
+    }
+  }
+
+
+$gap : 0;
+@while $gap <= 16 {
+  &[gap="#{$gap}"] {--grid-gap: #{$gap}rem;}
+  $breakpoints: xs, sm, md, lg, xl;
+    @each $breakpoint in $breakpoints {
+      &[gap*="#{$breakpoint}:#{$gap}"]{--grid-gap-#{$breakpoint}: #{$gap}rem;}
+    }
+  $gap : $gap + 0.25;
+}
+}
+
+
+
+
+:host {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), var(--col-template));
+  grid-auto-columns: var(--col-template);
+  grid-template-rows: repeat(var(--rows), var(--row-template));
+  grid-auto-rows: var(--col-template);
+  padding-top:var(--grid-gap);
+  padding-left:var(--grid-gap);
+  
+@media all and (-ms-high-contrast:none) {
+    display: -ms-grid;
+    -ms-grid-columns: (var(--col-template))[var(--cols)];
+    -ms-grid-rows: (var(--row-template))[var(--rows)];
+}
+}
+

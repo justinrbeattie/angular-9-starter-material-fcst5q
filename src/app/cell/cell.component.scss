@@ -1,0 +1,41 @@
+:host {
+  background:red;
+  div {
+  background:green;
+  width:calc(100% - var(--grid-gap));
+  height:calc(100% - var(--grid-gap));
+  }
+}
+
+:host > * {
+  --cols:unset;
+  --col-template:unset;
+  --rows:unset;
+  --row-template:unset;
+
+  --cols-xs:unset;
+  --col-template-xs:unset;
+  --rows-xs:unset;
+  --row-template-xs:unset;
+
+  --cols-sm:unset;
+  --col-template-sm:unset;
+  --rows-sm:unset;
+  --row-template-sm:unset;
+
+  --cols-md:unset;
+  --col-template-md:unset;
+  --rows-md:unset;
+  --row-template-md:unset;
+
+  --cols-lg:unset;
+  --col-template-lg:unset;
+  --rows-lg:unset;
+  --row-template-lg:unset;
+
+  --cols-xl:unset;
+  --col-template-xl:unset;
+  --rows-xl:unset;
+  --row-template-xl:unset;
+
+}
