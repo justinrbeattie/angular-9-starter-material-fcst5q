@@ -21,14 +21,16 @@ body {
 /* Grid Container */
  @each  $name, $breakpoint in $breakpoints {
 
-    }
-grid {
-  --cols:inherit;
-  --col-template:inherit;
-  --rows:inherit;
-  --row-template:inherit;
-  --gap:inherit;
+@media screen and (min-width: #{$breakpoint}) {
+   grid {
+  --cols-#{$breakpoint}:inherit;
+  --col-template-#{$breakpoint}:inherit;
+  --rows-#{$breakpoint}:inherit;
+  --row-template-#{$breakpoint}:inherit;
+  --gap-#{$breakpoint}:inherit;
 }
+}
+    }
 
 cell {
   --colspan:inherit;
